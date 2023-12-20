@@ -33,6 +33,7 @@ Before executing the scripts, you'll need to create a [GCP account](https://clou
     * `location` = Whatever location you set for you GCP project. Safe default can be “us-central1”
     * `user_name` = Your name or alias
     * `user_name` = Your GMail
+* Change the `defaultdatabase` value in [dataform.json](dataform_logic/dataform.json) to your GCP `project_id` name
 
 *I recommend keeping Drake and Taylor swift as the artists for first initial load.  During the API pull, some artists don't have the same number of genres listed and could cause a loading error when data is modeled in Dataform. Doing this will set the tone so when the incremental script is ran, the logic will be able to handle a lower or higher number of genres.*
 
