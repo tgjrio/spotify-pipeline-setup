@@ -50,8 +50,8 @@ If you have any questions, please feel free to reach out to me on [LinkedIn](htt
 
 Stay tuned for my next project!
 
-Useful resources:
-[Dataform Overview and examples](https://cloud.google.com/dataform/docs/overview)
-[IAM Roles in GCP](https://cloud.google.com/iam/docs/overview)
+Useful resources:\
+[Dataform Overview and examples](https://cloud.google.com/dataform/docs/overview)\
+[IAM Roles in GCP](https://cloud.google.com/iam/docs/overview)\
 [Spotify Developer Documentation](https://developer.spotify.com/documentation/web-api)
 
