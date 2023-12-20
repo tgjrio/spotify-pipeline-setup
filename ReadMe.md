@@ -26,8 +26,8 @@ Before executing the scripts, you'll need to create a [GCP account](https://clou
     * Click your new app to see the dashboard for it.
     * Select settings at the top right and that will bring you to the Client ID and Client Secret
 * Create a new file called .env in the root directory of the project and set the variables using your Spotify credentials:
-    *client_id = ""
-    *client_secret = ""   
+    * client_id = ""
+    * client_secret = ""   
 * Go into the [initial_load.py](initial_load.py) file and input your values for:
     * `project_id` = Name of the project you created in GCP
     * `location` = Whatever location you set for you GCP project. Safe default can be “us-central1”
