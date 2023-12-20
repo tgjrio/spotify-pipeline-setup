@@ -6,7 +6,7 @@ From a high level, the [initial_load.py](initial_load.py) pipeline script is:
 2. Processing data via Python to make the load into BigQuery happy
 3. Creating the required datasets and tables in BigQuery while updating schema
 4. Creating Dataform repository & workspace to model & update production tables
-5. Inserting files from dataform_logic into your newly created Dataform repository
+5. Commiting & Pulling files from [dataform_logic](dataform_logic) into your newly created Dataform repository
 6. Installing the required packages you need to run Dataform
 7. Upload data into their respective tables in the staging dataset
 8. Invoking the Dataform workflow to process data into their respective tables in the production dataset
