@@ -10,7 +10,7 @@ From a high level, [initial_load.py](initial_load.py) pipeline script is:
 6. Upload data into their respective tables in the staging dataset
 7. Invoking the Dataform workflow to process data into their respective tables in the production dataset
 
-After the inital load is complete, the [incremental.py](incremenal_load.py) script with only do steps 1, 2, 5, 6 and 7 as it loads in new records for artists you choose. 
+After the inital load is complete, the [incremental.py](incremenal_load.py) script with only do steps 1, 2, 6 and 7 as it loads in new records for artists you choose. 
 
 Whether you're new to Python or not, I encourage you to take a look at [gcp_operators.py](gcp_operators.py) and [operators.py](operators.py) to scope out the functions that handle all of the processes in the pipelines.  Each function comes with an explanation on what's happening and the required arguments.
 
