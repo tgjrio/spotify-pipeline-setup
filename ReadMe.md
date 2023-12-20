@@ -1,5 +1,5 @@
 ## WELCOME THE WORLD OF TGJR.IO
-This repository is setup for novice engineers who are looking to get their hands on a simple working pipeline.  I don't have a video tutorial for this but there is commentary throughout this entire repo explaining what each process is doing.
+This repository is setup for novice engineers who are looking to get their hands on a simple working pipeline.  I don't have a video tutorial for this but there is commentary throughout this entire repo explaining what each process is doing.  I'm also assuming you know your way around Github and you've been exposed to Python since you're destined to be an engineer.  It's a plus if you're familir with GCP but navigating their products are pretty straightfoward.  Now let me explain what you're getting into.
 
 From a high level, [initial_load.py](initial_load.py) pipeline script is:
 1. Pulling data from Spotify at 5 different endpoints
@@ -60,17 +60,18 @@ Before executing the scripts, you'll need to create a [GCP account](https://clou
     * `user_name` = Your GMail
 * Change the `defaultdatabase` value in [dataform.json](dataform_logic/dataform.json) to your GCP `project_id` name
 
-*I recommend keeping Drake and Taylor swift as the artists for first initial load.  During the API pull, some artists don't have the same number of genres listed and could cause a loading error when data is modeled in Dataform. Doing this will set the tone so when the incremental script is ran, the logic will be able to handle a lower or higher number of genres.*
-
 After you setup the variables in `initial_load.py`, you can run the script!
 Once it prompts you that it's done, hop into your Dataform UI and check the execution logs in your repo and the tables in Big Query.
 
-* DEMONSTRATION VIDEO
+*I highly recommend keeping Drake and Taylor swift as the artists for first initial load.  During the API pull, some artists don't have the same number of genres listed and could cause a loading error when data is modeled in Dataform. Doing this will set the tone so when the incremental script is ran, the logic will be able to handle a lower or higher number of genres.*
 
+If you're happy and ready to expand, open the [`incremental_load.py`](initial_load.py) file and update the `project_id` & `location` variables with the same values you put for initial_load.py. Please input a list of artists that you want to load next and then execute the script! Highly recommend using 5 at a time to avoid hitting rate limit. Repeat steps (Checking dataform execution logs and Bigquery) after script is completed to QA. Run incremental_load.py anytime you want to update your Spotify Database!
 
-If you're happy and ready to expand, open [`incremental_load.py`](initial_load.py) file and update the same variables that you did for initial_load.py. Please input a list of artists that you want to load next and then execute the script! Highly recommend using 5 at a time to avoid hitting rate limit. Repeat steps (Checking dataform execution logs and bigquery) after script is completed to QA. Run incremental_load.py anytime you want to update your Spotify Database!
+That's it! 
 
-<p>I encourage you all to explore the operators we use to pull in data and refactor them to pull from different endpoints that Spotify offers!</p>
+I'm extremely thankful that you took sometime to work through this exercise and I hope you come out of this with a clear understanding of what a simple pipeline looks like.  There's so much to learn in the world of Data Engineering and the best advice I can give to a rookie like me: 
+
+*Since there's more than one way to solve a problem in this field, don't get caught up on trying to find the best problem everytime.  Really think about solving the problem first and after you do that, you'll have the flexibility to expand on that project to make it more efficient or implement different tools you've learned about.*
 
 If you have any questions, please feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/tg2/)
 
