@@ -6,7 +6,6 @@ Before executing the scripts, you'll need to create a [GCP account](https://clou
 * At the top right, find and check a box that says: `Include Google-provided role grants`. 
 * You should see a principal account ending with ***dataform.iam.gserviceaccount.com***.  Click the edit button on the right to make changes on access.
 * Under the dropdown named `Role` search for `"BigQuery Admin"`, select this role and click save.  This will give Dataforms service account permission to run jobs in Big Query.
-    * [Check this link](https://cloud.google.com/iam/docs/overview) to learn more about IAM roles in GCP
 
 **After the GCP setup, you're ready to start your Spotify pipeline!**
 
@@ -50,3 +49,9 @@ If you're happy and ready to expand, open [`incremental_load.py`](initial_load.p
 If you have any questions, please feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/tg2/)
 
 Stay tuned for my next project!
+
+Useful resources:
+[Dataform Overview and examples](https://cloud.google.com/dataform/docs/overview)
+[IAM Roles in GCP](https://cloud.google.com/iam/docs/overview)
+[Spotify Developer Documentation](https://developer.spotify.com/documentation/web-api)
+
