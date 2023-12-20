@@ -13,6 +13,18 @@ from google.api_core.exceptions import GoogleAPICallError
 
 
 def create_bigquery_dataset(project_id, dataset_id, description=""):
+    """
+    Creates a dataset in Google BigQuery.
+    - Sets up and validates Google credentials.
+    - Constructs and sends a POST request to the BigQuery API to create a dataset.
+    - Includes optional dataset description.
+    - Returns True if the dataset is created successfully, False otherwise.
+    Parameters:
+        project_id (str): The ID of the Google Cloud project.
+        dataset_id (str): The ID of the dataset to create.
+        description (str, optional): A description for the dataset.
+    """
+
     # Set up credentials
     credentials, project = google.auth.default()
 
@@ -51,6 +63,22 @@ def create_bigquery_dataset(project_id, dataset_id, description=""):
     
 
 def create_bigquery_table(project_id, table_name, dataset, schema, description=""):
+    """
+    Creates a table in a specified dataset in Google BigQuery.
+    - Authenticates and initializes a BigQuery client.
+    - Constructs a full BigQuery path for the new table.
+    - Creates a Table instance with the provided schema and optional description.
+    - Attempts to create the table in BigQuery and handles any exceptions.
+    - Prints the success or failure message.
+    Returns True if the table is created successfully, False otherwise.
+    Parameters:
+        project_id (str): The Google Cloud project ID.
+        table_name (str): The name of the table to create.
+        dataset (str): The dataset in which the table will be created.
+        schema (List[bigquery.SchemaField]): The schema definition for the table.
+        description (str, optional): A description for the table.
+    """
+
     credentials, project = google.auth.default()
     client = bigquery.Client(credentials=credentials)
 
@@ -74,6 +102,20 @@ def create_bigquery_table(project_id, table_name, dataset, schema, description="
     
 
 def create_dataform_repository(project_id, location, repository_id):
+    """
+    Creates a repository in Dataform within Google Cloud.
+    - Sets up and validates Google Cloud credentials.
+    - Initializes a Dataform client.
+    - Configures the repository with the provided display name.
+    - Makes a request to create the repository in the specified project and location.
+    - Handles exceptions and prints success or failure messages.
+    Returns True if the repository is created successfully, False otherwise.
+    Parameters:
+        project_id (str): The Google Cloud project ID.
+        location (str): The location/region for the repository.
+        repository_id (str): The ID for the new repository.
+    """
+
     # Set up credentials
     credentials, project = google.auth.default()
 
@@ -101,6 +143,21 @@ def create_dataform_repository(project_id, location, repository_id):
     
 
 def create_dataform_workspace(project_id, location, repository_id, workspace_name):
+    """
+    Creates a workspace in a Dataform repository.
+    - Authenticates and initializes a Dataform client.
+    - Constructs the path to the target repository.
+    - Configures a request to create a workspace with the specified name.
+    - Attempts to create the workspace and handles any exceptions.
+    - Prints success message with workspace details or failure message.
+    Returns the response object if successful, or None in case of failure.
+    Parameters:
+        project_id (str): The Google Cloud project ID.
+        location (str): The location/region of the repository.
+        repository_id (str): The ID of the repository.
+        workspace_name (str): The name for the new workspace.
+    """
+
     credentials, project = google.auth.default()
     client = dataform_v1beta1.DataformClient(credentials=credentials)
 
@@ -123,6 +180,23 @@ def create_dataform_workspace(project_id, location, repository_id, workspace_nam
     
 
 def insert_logic_to_workspace(project_id, location, repository_id, workspace_name, dataform_files_path):
+    """
+    Inserts files from a local directory into a Dataform workspace.
+    - Authenticates and initializes a Dataform client.
+    - Constructs the path to the specified workspace.
+    - Iterates over files in the provided directory path.
+    - For each file, constructs a path within the workspace and reads its contents.
+    - Makes a request to write each file into the workspace.
+    - Handles exceptions and prints status messages for each file.
+    Concludes by indicating all files have been processed.
+    Parameters:
+        project_id (str): The Google Cloud project ID.
+        location (str): The location/region of the repository.
+        repository_id (str): The repository ID.
+        workspace_name (str): The workspace name.
+        dataform_files_path (str): Local file system path to Dataform files.
+    """
+
     credentials, project = google.auth.default()
     client = dataform_v1beta1.DataformClient(credentials=credentials)
 
@@ -152,6 +226,20 @@ def insert_logic_to_workspace(project_id, location, repository_id, workspace_nam
 
 
 def install_npm_packages_in_workspace(project_id, location, repository_id, workspace_name):
+    """
+    Installs NPM packages in a specified Dataform workspace.
+    - Sets up Google Cloud credentials and initializes a Dataform client.
+    - Identifies the workspace path based on provided project, location, repository, and workspace names.
+    - Sends a request to install NPM packages in the identified workspace.
+    - Handles exceptions and prints success or failure messages.
+    Returns the response object if successful, or None in case of failure.
+    Parameters:
+        project_id (str): The Google Cloud project ID.
+        location (str): The location/region of the repository.
+        repository_id (str): The repository ID.
+        workspace_name (str): The name of the workspace where NPM packages will be installed.
+    """
+
     credentials, project = google.auth.default()
     client = dataform_v1beta1.DataformClient(credentials=credentials)
 
@@ -172,6 +260,23 @@ def install_npm_packages_in_workspace(project_id, location, repository_id, works
     
 
 def commit_changes_to_workspace(project_id, location, repository_id, workspace_name, user_name, user_email):
+    """
+    Commits changes to a specific Dataform workspace.
+    - Authenticates and initializes a Dataform client.
+    - Constructs the workspace path based on the provided project, location, repository, and workspace names.
+    - Sets up the author information for the commit using the provided user name and email.
+    - Creates a request to commit changes to the workspace with a commit message.
+    - Executes the commit request and handles any exceptions.
+    - Prints a success message or an error message based on the outcome.
+    Parameters:
+        project_id (str): The Google Cloud project ID.
+        location (str): The location/region of the repository.
+        repository_id (str): The repository ID.
+        workspace_name (str): The name of the workspace to commit changes.
+        user_name (str): Name of the user committing the changes.
+        user_email (str): Email address of the user committing the changes.
+    """
+
     credentials, project = google.auth.default()
     client = dataform_v1beta1.DataformClient(credentials=credentials)
 
@@ -196,6 +301,19 @@ def commit_changes_to_workspace(project_id, location, repository_id, workspace_n
 
 
 def push_git_commits_to_default_branch(project_id, location, repository_id, workspace_name):
+    """
+    Pushes Git commits to the default branch of a specific workspace in Dataform.
+    - Authenticates and initializes a Dataform client.
+    - Determines the path to the targeted repository within the workspace.
+    - Constructs and sends a request to push Git commits to the repository's default branch.
+    - Handles any exceptions and prints out success or failure messages.
+    Parameters:
+        project_id (str): The Google Cloud project ID.
+        location (str): The location/region of the repository.
+        repository_id (str): The ID of the repository.
+        workspace_name (str): The name of the workspace containing the Git repository.
+    """
+
     credentials, project = google.auth.default()
     client = dataform_v1beta1.DataformClient(credentials=credentials)
 
@@ -214,6 +332,20 @@ def push_git_commits_to_default_branch(project_id, location, repository_id, work
 
 
 def create_compilation_result(project_id, location, repository_id):
+    """
+    Creates a compilation result for a given repository in Dataform.
+    - Initializes Google Cloud credentials and a Dataform client.
+    - Defines the path to the targeted repository.
+    - Configures a compilation result targeting the 'main' Git branch.
+    - Sends a request to create the compilation result in the repository.
+    - Handles exceptions and prints success or error messages.
+    Returns the name of the created compilation result if successful, or None in case of failure.
+    Parameters:
+        project_id (str): The Google Cloud project ID.
+        location (str): The location/region of the repository.
+        repository_id (str): The ID of the repository.
+    """
+
     credentials, project = google.auth.default()
     client = dataform_v1beta1.DataformClient(credentials=credentials)
 
@@ -238,6 +370,21 @@ def create_compilation_result(project_id, location, repository_id):
     
 
 def create_workflow_invocation(project_id,location, repository_id, compilation_result_name):
+    """
+    Initiates a workflow invocation in a Dataform repository.
+    - Sets up Google Cloud credentials and initializes a Dataform client.
+    - Determines the path to the targeted repository.
+    - Configures a workflow invocation with the specified compilation result name.
+    - Sends a request to create the workflow invocation in the repository.
+    - Handles any exceptions and prints success or failure messages.
+    Returns the response object if successful, or None in case of failure.
+    Parameters:
+        project_id (str): The Google Cloud project ID.
+        location (str): The location/region of the repository.
+        repository_id (str): The ID of the repository.
+        compilation_result_name (str): The name of the compilation result to be used in the workflow invocation.
+    """
+
     credentials, project = google.auth.default()
     client = dataform_v1beta1.DataformClient(credentials=credentials)
 

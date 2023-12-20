@@ -26,9 +26,6 @@ client_id = os.getenv("client_id")
 client_secret = os.getenv("client_secret")
 
 
-
-
-
 def get_token():
 
     """
@@ -228,6 +225,15 @@ def get_album_data(album_ids, token):
 
 
 def albums_df(data):
+    """
+    Transforms a list of album data into a pandas DataFrame.
+    - Ensures 'data' is a list, and each item in 'data' and 'albums' is a dictionary.
+    - Extracts detailed information about each album and its tracks.
+    - Constructs a list of track objects with album and artist information.
+    - Converts this list into a DataFrame for easy data manipulation and analysis.
+    Raises TypeError for data type mismatches and ValueError for DataFrame conversion issues.
+    """
+
     # Check if 'data' is a list
     if not isinstance(data, list):
         raise TypeError("data must be a list")
@@ -290,6 +296,16 @@ def albums_df(data):
 
 
 def features_df(track_ids, token):
+    """
+    Retrieves audio features for a list of track IDs from the Spotify API and converts them into a DataFrame.
+    - Verifies 'track_ids' is a list and splits it into chunks (100 IDs per chunk) to manage API limits.
+    - Fetches audio features for each chunk using the Spotify audio features API.
+    - Validates response and extracts audio feature data.
+    - Filters out any None values and accumulates the audio features in a list.
+    - Converts the accumulated list of features into a pandas DataFrame.
+    Raises TypeError for incorrect input types and ValueError for invalid response codes.
+    """
+
     # Check if 'track_ids' is a list
     if not isinstance(track_ids, list):
         raise TypeError("track_ids must be a list")
@@ -336,8 +352,6 @@ def features_df(track_ids, token):
         # Extend the list of audio features with the filtered audio features from the current chunk
         all_content.extend(audio_features)
 
-        
-
     # Convert the list of audio features to a DataFrame
     df = pd.DataFrame(all_content)
 
@@ -345,6 +359,15 @@ def features_df(track_ids, token):
 
 
 def tracks_df(track_ids, token):
+    """
+    Fetches details of tracks from the Spotify API and structures them into a DataFrame.
+    - Splits 'track_ids' into chunks (50 IDs per chunk) to manage API request limits.
+    - Fetches track information for each chunk using the Spotify tracks API.
+    - Validates the response and extracts essential track details.
+    - Constructs a DataFrame from the accumulated track information.
+    Raises ValueError for invalid response codes.
+    """
+
     # This function will generate chunks from the list
     def chunks(lst, n):
         for i in range(0, len(lst), n):
@@ -380,6 +403,16 @@ def tracks_df(track_ids, token):
 
 
 def artists_df(track_ids, token):
+    """
+    Retrieves artist information for a list of track IDs from the Spotify API and formats it into a DataFrame.
+    - Splits 'track_ids' into chunks (25 IDs per chunk) for efficient API querying.
+    - Makes API requests to fetch artist data and validates responses.
+    - Processes each artist's data, including popularity, genres, and followers.
+    - Converts the artist data into a DataFrame.
+    - Splits 'artist_genres' into separate columns and joins them with the original DataFrame.
+    Raises ValueError for invalid API response codes.
+    """
+    
     # This function will generate chunks from the list
     def chunks(lst, n):
         for i in range(0, len(lst), n):
@@ -418,7 +451,6 @@ def artists_df(track_ids, token):
 
             data.append(artist_data)
       
-
     df = pd.DataFrame(data)
 
     # Split 'artist_genres' into separate columns
@@ -434,9 +466,17 @@ def artists_df(track_ids, token):
 
 
 def cleanup(df):
-    df["artist_id"] = (
-        df["artist_id"].astype(str).str.replace("(", "").str.replace(")", "")
-    )
+    """
+    Cleans and formats a DataFrame containing Spotify track and artist information.
+    - Removes parentheses and single quotes from 'artist_id'.
+    - Splits 'artists' into separate columns and renames them for clarity.
+    - Converts 'duration_ms' from milliseconds to seconds.
+    - Changes the casing of 'track_name' and 'album_name' to title case.
+    - Converts 'release_date' to a datetime object, handling mixed formats.
+    Returns the cleaned and formatted DataFrame.
+    """
+   
+    df["artist_id"] = (df["artist_id"].astype(str).str.replace("(", "").str.replace(")", ""))
     df["artist_id"] = df["artist_id"].str.replace("'", "")
 
     # Split 'artist' into separate columns
