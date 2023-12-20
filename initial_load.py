@@ -7,10 +7,10 @@ import schemas as sch
 from pandas_gbq import to_gbq
 
 # CHANGE THESE VARIABLE TO WHAT YOUR ENVIRONMENT IS
-project_id = "spotify-tg-07248901" # CHANGE DEFAULTDATABASE IN DATAFORM.JSON FILE TO THIS VALUE AS WELL
-location = "us-central1"
-user_name = "Tony Gordon"
-user_email = "tgjr.io1@gmail.com"
+project_id = "" # CHANGE DEFAULTDATABASE IN DATAFORM.JSON FILE TO THIS VALUE AS WELL
+location = ""
+user_name = ""
+user_email = ""
 
 # USED FOR DATAFORM REPOSITORY AND WORSKSPACE SETUP. MORE THAN WELCOME TO CHANGE THE NAME OF THESE
 repository_id = "spotify-data-pull"
