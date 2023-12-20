@@ -11,7 +11,7 @@ Before executing the scripts, you'll need to create a [GCP account](https://clou
 
 * Clone or Fork this repository and then open folder in your favorite IDE (VS-Code is what I recommend)
 * Open your terminal and create a virtual environment and then you'll activate it:
-    *  `python -m venv [env_name]` env_name should be the name you want for your virtual environment and you can remove the []
+    *  `python -m venv [env_name]` env_name should be the name you want for your virtual environment and you can remove the [ ]
     * To activate environment on a Windows: `myenv\Scripts\activate`
     * To activate environment on a Mac: `source myenv/bin/activate`
 * In your terminal, install packages in [requirements.txt](requirements.txt)
