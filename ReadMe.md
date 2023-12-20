@@ -70,7 +70,7 @@ If you're happy and ready to expand, open the [`incremental_load.py`](initial_lo
 
 That's it! 
 
-I'm extremely thankful that you took sometime to work through this exercise and I hope you come out of this with a clear understanding of what a simple pipeline looks like.  There's so much to learn in the world of Data Engineering and the best advice I can give to a rookie like me: 
+I'm extremely thankful that you took some time to work through this exercise and I hope you come out of this with a clear understanding of what a simple pipeline looks like.  There's so much to learn in the world of Data Engineering and the best advice I can give to a rookie like me: 
 
 *Since there's more than one way to solve a problem in this field, don't get caught up on trying to find the best problem everytime.  Really think about solving the problem first and after you do that, you'll have the flexibility to expand on that project to make it more efficient or implement different tools you've learned about.*
 
