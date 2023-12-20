@@ -1,0 +1,76 @@
+config {
+     type: "operations", 
+     dependencies: [
+        "upsert_albums",
+        "upsert_artists",
+        "upsert_features",
+        "upsert_tracks"
+        ]
+   }
+
+
+DROP TABLE IF EXISTS `staging.reporting`;
+CREATE OR REPLACE TABLE `staging.reporting` AS
+
+SELECT  pa.album_id,
+        pa.album_name,
+        pa.album_popularity,
+        pa.album_type,
+        pa.artists,
+        pa.artist_0,
+        pa.artist_1,
+        pa.artist_2,
+        pa.artist_3,
+        pa.artist_4,
+        pa.artist_id,
+        pa.duration_sec,
+        pa.label,
+        pa.release_date,
+        pa.total_tracks,
+        pa.track_id,
+        pa.track_name,
+        pa.track_number,
+
+        par.artist_genres,
+        par.artist_popularity,
+        par.followers,
+        par.name,
+        par.genre_0,
+        par.genre_1,		
+        par.genre_2,			
+        par.genre_3,
+        par.genre_4,
+
+        pf.acousticness,
+        pf.analysis_url,
+        pf.danceability,
+        pf.duration_ms,
+        pf.energy,
+        pf.instrumentalness,
+        pf.key,
+        pf.liveness,
+        pf.loudness,
+        pf.mode,
+        pf.speechiness,
+        pf.tempo,
+        pf.time_signature,
+        pf.track_href,
+        pf.type,
+        pf.uri,
+        pf.valence,
+
+        pt.explicit,
+        pt.track_popularity
+
+
+
+FROM `staging.albums` pa
+
+LEFT JOIN `staging.features` pf
+ON pa.track_id = pf.id
+
+LEFT JOIN `staging.tracks` pt
+ON pa.track_id = pt.id
+
+LEFT JOIN `staging.artist` par
+ON pa.artist_id = par.id

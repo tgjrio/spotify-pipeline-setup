@@ -1,0 +1,60 @@
+MERGE production.albums p
+    USING staging.albums s
+    ON p.track_id = s.track_id
+    AND p.album_type = s.album_type
+    WHEN NOT MATCHED BY TARGET THEN 
+        INSERT(
+            track_name,
+            track_id,
+            track_number,
+            duration_ms,
+            album_type,
+            total_tracks,
+            album_name,
+            release_date,
+            label,
+            album_popularity,
+            album_id,
+            artist_id,
+            artist_0,
+            artist_1,
+            artist_2,
+            artist_3,
+            artist_4,
+            artist_5,
+            artist_6,
+            artist_7,
+            artist_8,
+            duration_sec
+        )
+
+        VALUES(
+            s.track_name,
+            s.track_id,
+            s.track_number,
+            s.duration_ms,
+            s.album_type,
+            s.total_tracks,
+            s.album_name,
+            s.release_date,
+            s.label,
+            s.album_popularity,
+            s.album_id,
+            s.artist_id,
+            s.artist_0,
+            s.artist_1,
+            s.artist_2,
+            s.artist_3,
+            s.artist_4,
+            s.artist_5,
+            s.artist_6,
+            NULL,
+            NULL,
+            s.duration_sec
+        )
+
+
+
+
+
+

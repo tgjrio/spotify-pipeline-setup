@@ -1,0 +1,46 @@
+MERGE production.features p
+    USING staging.features s
+    ON p.id = s.id
+    WHEN NOT MATCHED BY TARGET THEN 
+        INSERT(
+            danceability,						
+            energy,					
+            key,					
+            loudness,						
+            mode,						
+            speechiness,						
+            acousticness,						
+            instrumentalness,						
+            liveness,						
+            valence,						
+            tempo,						
+            type,						
+            id,						
+            uri,						
+            track_href,						
+            analysis_url,						
+            duration_ms,						
+            time_signature
+        )
+
+        VALUES(
+            
+            s.danceability,
+            s.energy,
+            s.key,
+            s.loudness,
+            s.mode,
+            s.speechiness,
+            s.acousticness,
+            s.instrumentalness,
+            s.liveness,
+            s.valence,
+            s.tempo,
+            s.type,
+            s.id,
+            s.uri,
+            s.track_href,
+            s.analysis_url,
+            s.duration_ms,
+            s.time_signature
+        )

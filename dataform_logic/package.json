@@ -1,0 +1,6 @@
+{
+    "name": "spotify_data_pull",
+    "dependencies": {
+      "@dataform/core": "2.4.2"
+    }
+  }

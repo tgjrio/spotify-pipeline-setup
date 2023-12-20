@@ -1,0 +1,24 @@
+config {
+     type: "table",
+     schema: "production",
+     name: "master_reporting",
+     description: master_reporting.description,
+     columns: master_reporting.columns,
+     dependencies: [
+        "upsert_reporting"
+        ]
+   }
+
+WITH ranked_tracks AS (
+  SELECT 
+    *,
+    EXTRACT(YEAR FROM TIMESTAMP(release_date)) AS release_year,
+    FORMAT_TIMESTAMP('%B', TIMESTAMP(release_date)) AS release_month,
+    ROW_NUMBER() OVER (PARTITION BY album_name, track_name, explicit ORDER BY track_number) AS rn
+  FROM `production.reporting`
+  WHERE album_type IN ('album', 'single')
+)
+
+SELECT * EXCEPT(rn)
+FROM ranked_tracks
+WHERE rn = 1

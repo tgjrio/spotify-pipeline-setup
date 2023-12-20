@@ -1,0 +1,36 @@
+{
+    "defaultSchema": "dataform",
+    "assertionSchema": "dataform_assertions",
+    "warehouse": "bigquery",
+    "defaultDatabase": "spotify-tg-07248901",
+    "defaultLocation": "US",
+    "models": [
+      {
+        "name": "upsert_albums",
+        "tags": ["upsert"],
+        "type": "operation"
+      },
+      {
+        "name": "upsert_features",
+        "tags": ["upsert"],
+        "type": "operation"
+      },
+      {
+        "name": "upsert_artists",
+        "tags": ["upsert"],
+        "type": "operation"
+      },
+      {
+        "name": "upsert_tracks",
+        "tags": ["upsert"],
+        "type": "operation"
+      },
+      {
+        "name": "master_table",
+        "tags": ["master"],
+        "type": "view",
+        "dependsOn": ["upsert_albums", "upsert_features", "upsert_artists", "upsert_tracks"]
+      }
+    ]
+  }
+  

@@ -1,0 +1,30 @@
+MERGE production.artist p
+    USING staging.artist s
+    ON p.id = s.id
+    WHEN NOT MATCHED BY TARGET THEN 
+        INSERT(
+            id,		
+            name,			
+            artist_popularity,				
+            artist_genres,		
+            followers,
+            genre_0,
+            genre_1,		
+            genre_2,			
+            genre_3,
+            genre_4
+        )
+
+        VALUES(
+            
+            s.id,
+            s.name,
+            s.artist_popularity,
+            s.artist_genres,
+            s.followers,
+            s.genre_0,
+            s.genre_1,		
+            s.genre_2,			
+            s.genre_3,
+            s.genre_4
+        )

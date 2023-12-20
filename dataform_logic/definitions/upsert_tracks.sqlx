@@ -1,0 +1,16 @@
+MERGE production.tracks p
+    USING staging.tracks s
+    ON p.id = s.id
+    WHEN NOT MATCHED BY TARGET THEN 
+        INSERT(
+            id,			
+            track_popularity,			
+            explicit
+        )
+
+        VALUES(
+            
+            s.id,
+            s.track_popularity,
+            s.explicit
+        )
