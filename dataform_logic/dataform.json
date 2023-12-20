@@ -2,7 +2,7 @@
     "defaultSchema": "dataform",
     "assertionSchema": "dataform_assertions",
     "warehouse": "bigquery",
-    "defaultDatabase": "spotify-tg-07248901",
+    "defaultDatabase": "",
     "defaultLocation": "US",
     "models": [
       {
