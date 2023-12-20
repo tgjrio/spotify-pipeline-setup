@@ -7,8 +7,8 @@ from pandas_gbq import to_gbq
 
 
 # CHANGE THESE VARIABLE TO WHAT YOUR ENVIRONMENT IS
-project_id = "spotify-tg-07248901"
-location = "us-central1"
+project_id = ""
+location = ""
 staging_dataset_id= 'staging'
 
 # USED FOR DATAFORM REPOSITORY AND WORSKSPACE SETUP. MORE THAN WELCOME TO CHANGE THE NAME OF THESE
