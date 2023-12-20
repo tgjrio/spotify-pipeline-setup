@@ -1,3 +1,25 @@
+## WELCOME THE WORLD OF TGJR.IO
+This repository is setup for novice engineers who are looking to get their hands on a simple working pipeline.  I don't have a video tutorial for this but there is commentary throughout this entire repo explaining what each process is doing.
+
+From a high level, [initial_load.py](initial_load.py) pipeline script is:
+1. Pulling data from Spotify at 5 different endpoints
+2. Processing data via Python to make the load into BigQuery happy
+3. Creating the required datasets and tables in BigQuery while updating schema
+4. Creating Dataform repository & workspace to model & update production tables
+5. Inserting files from dataform_logic into your newly created Dataform repository
+6. Upload data into their respective tables in the staging dataset
+7. Invoking the Dataform workflow to process data into their respective tables in the production dataset
+
+After the inital load is complete, the [incremental.py](incremenal_load.py) script with only do steps 1, 2, 5, 6 and 7 as it loads in new records for artists you choose. 
+
+Whether you're new to Python or not, I encourage you to take a look at [gcp_operators.py](gcp_operators.py) and [operators.py](operators.py) to scope out the functions that handle all of the processes in the pipelines.  Each function comes with an explanation on what's happening and the required arguments.
+
+I'm assuming most people coming to this project is new to Dataform and to be honest, there's a lot to talk about there but not enough time.  I provided a link at the bottom of this ReadMe to it's documnentation page and you can learn more about how it works there.  To explain it simply, Dataform is a service catered for analysts who want to model data into tables they can report from.  It's a very structured way to keep your code organized and it uses version control to manage everything.  You can even link any Git type of repo service to your Dataform repository!
+
+Now that we got the introduction out of the way, let's get started on our very own Spotify pipeline!
+
+
+### THE FUN BEGINS  
 Before executing the scripts, you'll need to create a [GCP account](https://cloud.google.com/docs/get-started) using your Google email.  After setup, you will need to create a new project if you haven't already.  Now that you have your project created, it's time to enable [Dataform](https://cloud.google.com/dataform?hl=en).
 
 <p>Once Dataform is enabled, you will have to give the service account permission to perform tasks in BigQuery. Below is a demonstration on how that's done:</p>
