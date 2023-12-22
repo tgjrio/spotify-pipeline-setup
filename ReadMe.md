@@ -1,7 +1,7 @@
 ## WELCOME THE WORLD OF TGJR.IO
 This repository is setup for novice engineers who are looking to get their hands on a simple working pipeline.  I don't have a video tutorial for this but there is commentary throughout this entire repo explaining what each process is doing.  I'm also assuming you know your way around Github and you've been exposed to Python since you're destined to be an engineer.  It's a plus if you're familiar with GCP but navigating their products is pretty straightfoward.  Now let me explain what you're getting into.
 
-Click this [link](https://www.kaggle.com/datasets/tonygordonjr/spotify-dataset-2023) if you want to see the final result of what you could pontentially have.  I uploaded a version of my final reporting table to Kaggle.
+Click this [link](https://www.kaggle.com/datasets/tonygordonjr/spotify-dataset-2023) if you want to see the final result of what you could pontentially have.  I uploaded a version of my final reporting tables to Kaggle.
 
 From a high level, the [initial_load.py](initial_load.py) pipeline script is:
 1. Pulling data from Spotify at 5 different endpoints
